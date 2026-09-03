@@ -11,21 +11,23 @@
 html, body {
     margin: 0;
     padding: 0;
-    background: #24789d;
+    background: transparent;
     font-family: Arial, sans-serif;
-    color: white;
 }
 
-.player {
+.player-card {
+    position: relative;
     width: 100%;
-    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+    background: white;
 }
 
-/* PLAYER IMAGE */
+/* IMAGE */
 .image-wrap {
     position: relative;
     cursor: pointer;
-    display: block;
 }
 
 .image-wrap img {
@@ -35,9 +37,9 @@ html, body {
 }
 
 /* PLAY BUTTON */
-.playbutton {
+.play-button {
     position: absolute;
-    bottom: 15px;
+    bottom: 14px;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0,0,0,.78);
@@ -50,101 +52,154 @@ html, body {
     pointer-events: none;
 }
 
-/* BIO BUTTON */
+/* READ BIO BUTTON */
 .bio-button {
     width: 100%;
-    border: 0;
+    border: none;
     background: #24789d;
     color: white;
     padding: 13px 8px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    border-bottom: 1px solid rgba(255,255,255,.35);
 }
 
-.bio-button:hover {
-    background: rgba(255,255,255,.08);
-}
-
-/* BIO */
-.bio {
+/* OVERLAY */
+.bio-overlay {
     display: none;
+    position: absolute;
+    inset: 0;
+    background: rgba(36,120,157,.97);
+    color: white;
+    z-index: 20;
+    padding: 16px;
+}
+
+.bio-overlay.open {
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+.bio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 19px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255,255,255,.4);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.close-x {
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* SCROLLABLE BIO */
+.bio-content {
+    flex: 1;
+    overflow-y: auto;
     text-align: left;
-    padding: 5px 14px 18px 14px;
     line-height: 1.45;
     font-size: 15px;
-    background: #24789d;
+    padding-right: 6px;
 }
 
-.bio.open {
-    display: block;
+.bio-content p {
+    margin: 0 0 14px 0;
 }
 
-.bio p {
-    margin: 12px 0;
+/* BOTTOM CLOSE BUTTON */
+.close-button {
+    border: none;
+    background: rgba(0,0,0,.28);
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="player">
+<div class="player-card">
 
     <div class="image-wrap" onclick="toggleMusic()">
 
         <img src="Tyler%20Curd.png" alt="Tyler Curd">
 
-        <div class="playbutton" id="playButton">
+        <div class="play-button" id="playButton">
             ▶ PLAY INTRO
         </div>
 
     </div>
 
-    <button class="bio-button" onclick="toggleBio()" id="bioButton">
+    <button class="bio-button" onclick="openBio()">
         ▼ READ BIO
     </button>
 
-    <div class="bio" id="bio">
+    <div class="bio-overlay" id="bioOverlay">
 
-        <p>
-        The DILF is sneaky good. I’d even venture to say he’s the
-        most underrated player in this entire tournament.
-        </p>
+        <div class="bio-header">
+            <span>TYLER CURD</span>
+            <button class="close-x" onclick="closeBio()">×</button>
+        </div>
 
-        <p>
-        His PPR does NOT do this man justice. He’s way better than
-        those numbers suggest, and if you sleep on him, he’ll make
-        you regret it.
-        </p>
+        <div class="bio-content">
 
-        <p>
-        The DILF, like myself and Vino, has proudly worn the coveted
-        Shit Hat on Black Friday. But unlike some people who put it
-        on and mentally check out, the DILF didn’t run away, didn’t
-        quit, and didn’t make excuses.
-        </p>
+            <p>
+            The DILF is sneaky good. I’d even venture to say he’s the
+            most underrated player in this entire tournament.
+            </p>
 
-        <p>
-        He went back to work, developed his game, and kept grinding.
-        And judging by what we’re seeing now, he’s only going to get
-        better next year.
-        </p>
+            <p>
+            His PPR does NOT do this man justice. He’s way better than
+            those numbers suggest, and if you sleep on him, he’ll make
+            you regret it.
+            </p>
 
-        <p>
-        But why is he a DILF, you ask?
-        </p>
+            <p>
+            The DILF, like myself and Vino, has proudly worn the coveted
+            Shit Hat on Black Friday. But unlike some people who put it
+            on and mentally check out, the DILF didn’t run away, didn’t
+            quit, and didn’t make excuses.
+            </p>
 
-        <p>
-        Simple. Anyone who starred in Step Brothers opposite Will
-        Ferrell is automatically getting A LOT of ass. That’s just
-        science.
-        </p>
+            <p>
+            He went back to work, developed his game, and kept grinding.
+            And judging by what we’re seeing now, he’s only going to get
+            better next year.
+            </p>
 
-        <p>
-        He is an under-the-radar cornhole menace, a Shit Hat
-        survivor, and apparently a certified Hollywood pussy magnet.
-        </p>
+            <p>
+            But why is he a DILF, you ask?
+            </p>
+
+            <p>
+            Simple. Anyone who starred in Step Brothers opposite Will
+            Ferrell is automatically getting A LOT of ass. That’s just
+            science.
+            </p>
+
+            <p>
+            He is an under-the-radar cornhole menace, a Shit Hat
+            survivor, and apparently a certified Hollywood pussy magnet.
+            </p>
+
+        </div>
+
+        <button class="close-button" onclick="closeBio()">
+            ✕ CLOSE BIO
+        </button>
 
     </div>
 
@@ -157,10 +212,10 @@ html, body {
 <script>
 const music = document.getElementById("music");
 const playButton = document.getElementById("playButton");
-const bio = document.getElementById("bio");
-const bioButton = document.getElementById("bioButton");
+const bioOverlay = document.getElementById("bioOverlay");
 
 function toggleMusic() {
+
     if (music.paused) {
         music.play();
         playButton.innerHTML = "■ STOP INTRO";
@@ -169,20 +224,19 @@ function toggleMusic() {
         music.currentTime = 0;
         playButton.innerHTML = "▶ PLAY INTRO";
     }
+
 }
 
 music.addEventListener("ended", function() {
     playButton.innerHTML = "▶ PLAY INTRO";
 });
 
-function toggleBio() {
-    bio.classList.toggle("open");
+function openBio() {
+    bioOverlay.classList.add("open");
+}
 
-    if (bio.classList.contains("open")) {
-        bioButton.innerHTML = "▲ HIDE BIO";
-    } else {
-        bioButton.innerHTML = "▼ READ BIO";
-    }
+function closeBio() {
+    bioOverlay.classList.remove("open");
 }
 </script>
 
