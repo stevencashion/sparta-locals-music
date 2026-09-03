@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    font-family: Arial, sans-serif;
+}
+
+.player-card {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+    background: white;
+}
+
+/* IMAGE */
+.image-wrap {
+    position: relative;
+    cursor: pointer;
+}
+
+.image-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* PLAY BUTTON */
+.play-button {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,.78);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 22px;
+    font-size: 15px;
+    font-weight: bold;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* READ BIO BUTTON */
+.bio-button {
+    width: 100%;
+    border: none;
+    background: #24789d;
+    color: white;
+    padding: 13px 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* OVERLAY */
+.bio-overlay {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background: rgba(36,120,157,.97);
+    color: white;
+    z-index: 20;
+    padding: 16px;
+}
+
+.bio-overlay.open {
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+.bio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 19px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255,255,255,.4);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.close-x {
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* SCROLLABLE BIO */
+.bio-content {
+    flex: 1;
+    overflow-y: auto;
+    text-align: left;
+    line-height: 1.45;
+    font-size: 15px;
+    padding-right: 6px;
+}
+
+.bio-content p {
+    margin: 0 0 14px 0;
+}
+
+/* BOTTOM CLOSE BUTTON */
+.close-button {
+    border: none;
+    background: rgba(0,0,0,.28);
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="player-card">
+
+    <div class="image-wrap" onclick="toggleMusic()">
+
+        <img src="Butt%20.png" alt="Butt">
+
+        <div class="play-button" id="playButton">
+            ▶ PLAY INTRO
+        </div>
+
+    </div>
+
+    <button class="bio-button" onclick="openBio()">
+        ▼ READ BIO
+    </button>
+
+    <div class="bio-overlay" id="bioOverlay">
+
+        <div class="bio-header">
+            <span>BUTT</span>
+            <button class="close-x" onclick="closeBio()">×</button>
+        </div>
+
+        <div class="bio-content">
+
+            <p>
+            The DILF is sneaky good. I’d even venture to say he’s the
+            most underrated player in this entire tournament.
+            </p>
+
+            <p>
+            His PPR does NOT do this man justice. He’s way better than
+            those numbers suggest, and if you sleep on him, he’ll make
+            you regret it.
+            </p>
+
+            <p>
+            The DILF, like myself and Vino, has proudly worn the coveted
+            Shit Hat on Black Friday. But unlike some people who put it
+            on and mentally check out, the DILF didn’t run away, didn’t
+            quit, and didn’t make excuses.
+            </p>
+
+            <p>
+            He went back to work, developed his game, and kept grinding.
+            And judging by what we’re seeing now, he’s only going to get
+            better next year.
+            </p>
+
+            <p>
+            But why is he a DILF, you ask?
+            </p>
+
+            <p>
+            Simple. Anyone who starred in Step Brothers opposite Will
+            Ferrell is automatically getting A LOT of ass. That’s just
+            science.
+            </p>
+
+            <p>
+            He is an under-the-radar cornhole menace, a Shit Hat
+            survivor, and apparently a certified Hollywood pussy magnet.
+            </p>
+
+        </div>
+
+        <button class="close-button" onclick="closeBio()">
+            ✕ CLOSE BIO
+        </button>
+
+    </div>
+
+</div>
+
+<audio id="music">
+    <source src="Butt%20.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("music");
+const playButton = document.getElementById("playButton");
+const bioOverlay = document.getElementById("bioOverlay");
+
+function toggleMusic() {
+
+    if (music.paused) {
+        music.play();
+        playButton.innerHTML = "■ STOP INTRO";
+    } else {
+        music.pause();
+        music.currentTime = 0;
+        playButton.innerHTML = "▶ PLAY INTRO";
+    }
+
+}
+
+music.addEventListener("ended", function() {
+    playButton.innerHTML = "▶ PLAY INTRO";
+});
+
+function openBio() {
+    bioOverlay.classList.add("open");
+}
+
+function closeBio() {
+    bioOverlay.classList.remove("open");
+}
+</script>
+
+</body>
+</html>
