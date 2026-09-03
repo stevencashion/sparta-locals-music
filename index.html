@@ -4,51 +4,148 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 html, body {
     margin: 0;
     padding: 0;
-    background: transparent;
-    text-align: center;
+    background: #24789d;
     font-family: Arial, sans-serif;
+    color: white;
 }
 
 .player {
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
+    width: 100%;
+    text-align: center;
 }
 
-.player img {
+/* PLAYER IMAGE */
+.image-wrap {
+    position: relative;
+    cursor: pointer;
+    display: block;
+}
+
+.image-wrap img {
     width: 100%;
-    max-width: 500px;
     height: auto;
     display: block;
 }
 
+/* PLAY BUTTON */
 .playbutton {
     position: absolute;
     bottom: 15px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0,0,0,.75);
+    background: rgba(0,0,0,.78);
     color: white;
-    padding: 10px 18px;
-    border-radius: 25px;
+    padding: 8px 16px;
+    border-radius: 22px;
+    font-size: 15px;
+    font-weight: bold;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* BIO BUTTON */
+.bio-button {
+    width: 100%;
+    border: 0;
+    background: #24789d;
+    color: white;
+    padding: 13px 8px;
     font-size: 16px;
     font-weight: bold;
-    pointer-events: none;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,.35);
+}
+
+.bio-button:hover {
+    background: rgba(255,255,255,.08);
+}
+
+/* BIO */
+.bio {
+    display: none;
+    text-align: left;
+    padding: 5px 14px 18px 14px;
+    line-height: 1.45;
+    font-size: 15px;
+    background: #24789d;
+}
+
+.bio.open {
+    display: block;
+}
+
+.bio p {
+    margin: 12px 0;
 }
 </style>
 </head>
 
 <body>
 
-<div class="player" onclick="toggleMusic()">
+<div class="player">
 
-    <img src="Tyler%20Curd.png" alt="Tyler Curd">
+    <div class="image-wrap" onclick="toggleMusic()">
 
-    <div class="playbutton" id="button">
-        ▶ PLAY INTRO
+        <img src="Tyler%20Curd.png" alt="Tyler Curd">
+
+        <div class="playbutton" id="playButton">
+            ▶ PLAY INTRO
+        </div>
+
+    </div>
+
+    <button class="bio-button" onclick="toggleBio()" id="bioButton">
+        ▼ READ BIO
+    </button>
+
+    <div class="bio" id="bio">
+
+        <p>
+        The DILF is sneaky good. I’d even venture to say he’s the
+        most underrated player in this entire tournament.
+        </p>
+
+        <p>
+        His PPR does NOT do this man justice. He’s way better than
+        those numbers suggest, and if you sleep on him, he’ll make
+        you regret it.
+        </p>
+
+        <p>
+        The DILF, like myself and Vino, has proudly worn the coveted
+        Shit Hat on Black Friday. But unlike some people who put it
+        on and mentally check out, the DILF didn’t run away, didn’t
+        quit, and didn’t make excuses.
+        </p>
+
+        <p>
+        He went back to work, developed his game, and kept grinding.
+        And judging by what we’re seeing now, he’s only going to get
+        better next year.
+        </p>
+
+        <p>
+        But why is he a DILF, you ask?
+        </p>
+
+        <p>
+        Simple. Anyone who starred in Step Brothers opposite Will
+        Ferrell is automatically getting A LOT of ass. That’s just
+        science.
+        </p>
+
+        <p>
+        He is an under-the-radar cornhole menace, a Shit Hat
+        survivor, and apparently a certified Hollywood pussy magnet.
+        </p>
+
     </div>
 
 </div>
@@ -59,28 +156,34 @@ html, body {
 
 <script>
 const music = document.getElementById("music");
-const button = document.getElementById("button");
+const playButton = document.getElementById("playButton");
+const bio = document.getElementById("bio");
+const bioButton = document.getElementById("bioButton");
 
 function toggleMusic() {
-
     if (music.paused) {
-
         music.play();
-        button.innerHTML = "■ STOP INTRO";
-
+        playButton.innerHTML = "■ STOP INTRO";
     } else {
-
         music.pause();
         music.currentTime = 0;
-        button.innerHTML = "▶ PLAY INTRO";
-
+        playButton.innerHTML = "▶ PLAY INTRO";
     }
-
 }
 
 music.addEventListener("ended", function() {
-    button.innerHTML = "▶ PLAY INTRO";
+    playButton.innerHTML = "▶ PLAY INTRO";
 });
+
+function toggleBio() {
+    bio.classList.toggle("open");
+
+    if (bio.classList.contains("open")) {
+        bioButton.innerHTML = "▲ HIDE BIO";
+    } else {
+        bioButton.innerHTML = "▼ READ BIO";
+    }
+}
 </script>
 
 </body>
