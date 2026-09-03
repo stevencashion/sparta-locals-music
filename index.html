@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.player {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+
+.player img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+}
+
+.playbutton {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,.75);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    pointer-events: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="player" onclick="toggleMusic()">
+
+    <img src="Tyler%20Curd.png" alt="Tyler Curd">
+
+    <div class="playbutton" id="button">
+        ▶ PLAY INTRO
+    </div>
+
+</div>
+
+<audio id="music">
+    <source src="Tyler%20Intro.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("music");
+const button = document.getElementById("button");
+
+function toggleMusic() {
+
+    if (music.paused) {
+
+        music.play();
+        button.innerHTML = "■ STOP INTRO";
+
+    } else {
+
+        music.pause();
+        music.currentTime = 0;
+        button.innerHTML = "▶ PLAY INTRO";
+
+    }
+
+}
+
+music.addEventListener("ended", function() {
+    button.innerHTML = "▶ PLAY INTRO";
+});
+</script>
+
+</body>
+</html>
